@@ -1,4 +1,4 @@
-const app = require("./app");
+const app = require("./app.js");
 const { Server } = require("socket.io");
 const connection = require("./database/connection.js");
 require("express-async-errors");
