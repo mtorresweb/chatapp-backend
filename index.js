@@ -3,11 +3,6 @@ const { Server } = require("socket.io");
 const connection = require("./database/connection.js");
 require("express-async-errors");
 
-//requiere models
-require("./models/User");
-require("./models/Chat");
-require("./models/Message");
-
 const PORT = process.env.PORT;
 
 //Connection to database
