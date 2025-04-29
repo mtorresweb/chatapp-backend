@@ -3,6 +3,22 @@ const { Server } = require("socket.io");
 const connection = require("./database/connection.js");
 require("express-async-errors");
 
+process
+  .on("SIGTERM", shutdown("SIGTERM"))
+  .on("SIGINT", shutdown("SIGINT"))
+  .on("uncaughtException", shutdown("uncaughtException"));
+
+function shutdown(signal) {
+  return (err) => {
+    console.log(`${signal}...`);
+    if (err) console.error(err.stack || err);
+    setTimeout(() => {
+      console.log("...waited 5s, exiting.");
+      process.exit(err ? 1 : 0);
+    }, 5000).unref();
+  };
+}
+
 const PORT = process.env.PORT || 3000;
 
 //Connection to database
