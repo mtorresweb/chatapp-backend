@@ -10,6 +10,7 @@ async function connection() {
     console.log("error connecting to MongoDB database");
     console.log(error);
     process.exit();
+    await mongoose.disconnect();
   }
 }
 
